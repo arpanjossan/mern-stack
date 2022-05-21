@@ -7,3 +7,4 @@ app.use(express.json())
 const product = require("./routes/productRoutes")
 app.use("/api/v1" , product)
 module.exports = app
+
