@@ -1,17 +1,15 @@
-// const app = require("../backend/app")
+const app = require("../backend/app")
 const express = require("express")
 
 const dotenv = require("dotenv")
+const connectDatabase = require("./config/database")
 
-// dotenv.config({path:"backend/config/config.env"})
-// app.listen(process.env.PORT,()=>{
+connectDatabase()
+dotenv.config({path:"backend/config/config.env"})
 
-//     console.log(`Server is working on http://localhost:${process.env.PORT}`);
-// })
-// const express = require("express");
-// const app = express();
-const app = express();
-const PORT = 3004
-app.listen(PORT , ()=>{
-    console.log("start" , PORT);
+app.listen(process.env.PORT,()=>{
+
+    console.log(`Server is working on http://localhost:${process.env.PORT}`);
 })
+
+
