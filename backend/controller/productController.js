@@ -45,9 +45,6 @@ exports.getProductsDetails = async(req,res ,next)=>{
    product
 
     })
-
- 
-    console.log("single Product controller")
 }
 
 
