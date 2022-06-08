@@ -1,11 +1,12 @@
 const Product = require("../models/productModel");
-const ErrorHander = require("../utils/errorhandler");
-const catchAsyncError = require("../middleware/catchAsyncError")
+const ErrorHandler = require("../utils/errorhandler");
+const catchAsyncErrors = require("../middleware/catchAsyncError");
+const ApiFeatures = require("../utils/apiFeatures");
 
 
 // ----------Create Product ------------
 
-exports.createdProduct = catchAsyncError(async (req,res)=>{
+exports.createdProduct = catchAsyncErrors(async (req,res)=>{
 
     const product = await Product.create(req.body);
     res.status(200).json({
@@ -17,10 +18,20 @@ exports.createdProduct = catchAsyncError(async (req,res)=>{
 
 // ------- GET All Products --------
 
-exports.getAllProducts = catchAsyncError(async(req,res)=>{
-    let products =  await Product.find();
+exports.getAllProducts = catchAsyncErrors(async(req,res,next)=>{
+    let resultPerPage =1
+    console.log(req.query);
+ const apiFeature =  new ApiFeatures(Product.find(),req.query).search().filter().pagination(resultPerPage);
+    const products = await  apiFeature.query
+ console.log(products);
+ if(!products || products.length<1){
+    return next(new ErrorHandler("Product not found", 404));
 
-    res.status(200).json({message:"Route is working",
+ }
+
+    // let products =  await Product.find();
+
+    res.status(200).json({products,
     success:true,
     products
 })
@@ -31,28 +42,24 @@ exports.getAllProducts = catchAsyncError(async(req,res)=>{
 //--------Get Product Details
 
 
-
-exports.getProductsDetails = async(req,res ,next)=>{
-
-    let product =  await Product.findById(req.params.id);
-   
-    if(!product){
-        return next(new ErrorHander("Product not Found" , 404))
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
+    const product = await Product.findById(req.params.id);
+  
+    if (!product) {
+      return next(new ErrorHandler("Product not found", 404));
     }
-
+  
     res.status(200).json({
-   success:true,
-   product
-
-    })
-}
-
+      success: true,
+      product,
+    });
+  });
 
 
 
 //-------Update Product ----------
 
-exports.updateProduct = async(req,res)=>{
+exports.updateProduct = catchAsyncErrors(async(req,res)=>{
  let product = await Product.findById(req.params.id)
 
  if(!product){
@@ -72,11 +79,11 @@ exports.updateProduct = async(req,res)=>{
      product
  })
 
-}
+})
 
 //------------Delete Product -------------
 
-exports.deleteProduct =async(req,res)=>{
+exports.deleteProduct =catchAsyncErrors(async(req,res)=>{
 
 let product =  await Product.findById(req.params.id)
 if(!product){
@@ -93,4 +100,4 @@ res.status(200).json({
     message:"Product Delete successfully"
 })
 
-}
+})

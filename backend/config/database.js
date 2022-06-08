@@ -6,15 +6,17 @@ const dotenv = require("dotenv")
 dotenv.config({path:"backend/config/config.env"})
 
 
-const connectDatabase =()=>  {mongoose.connect(
+const connectDatabase =()=>  {
+    mongoose.connect(
     process.env.DB, 
     {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        // useCreateIndex:true,
     }
 ).then((data)=>{
-console.log("connected to db");
-});
+console.log("connected to db" , data.connection.host);
+})
   }
 
  module.exports = connectDatabase
