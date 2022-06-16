@@ -6,7 +6,11 @@ const ApiFeatures = require("../utils/apiFeatures");
 // ----------Create Product ------------
 
 exports.createdProduct = catchAsyncErrors(async (req, res,next) => {
+  req.body.user = req.user.id
   const product = await Product.create(req.body);
+
+ 
+  // console.log(req.body , "===============");
    if(!product){
     return next(new ErrorHandler("Product not found", 404));
 
