@@ -21,7 +21,7 @@ exports.login = catchAsyncErrors(async (req, res, next) => {
  
 });
 
-//LOGIN USER
+//register
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -37,3 +37,20 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   });
   sendToken(user , 200 , res)
 });
+
+
+exports.logout = catchAsyncErrors(async(req,res,next)=>{
+    console.log("hello");
+    res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+      });
+    // res.cookie("token" , null , {
+    //     expire : Date.now(),
+    //     httpOnly :true
+    // });
+    res.status(200).json({
+        sucess:true,
+        message : "Logged Out"
+    })
+})
