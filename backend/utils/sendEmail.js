@@ -18,15 +18,7 @@ const sendEmail = async(options)=>{
 // //       pass:"jossansaab99"
 // //     }
 // //  });
-// const mailOptions = {
-//     from : "smtp.gmail.com",
-//     to :options.email,
-//     subject:options.subject,
-//     text : options.message
-// }
-// console.log("send Before");
-// await transporter.sendMail(mailOptions)
-// console.log("send");
+
 
 
     
