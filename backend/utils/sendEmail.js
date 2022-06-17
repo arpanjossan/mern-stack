@@ -6,8 +6,7 @@ const sendEmail = async(options)=>{
 // const transporter = nodeMailer.createTransport({
 //     service :"gmail",
 //     auth:{
-//         user:"arpanjossan4@gmail.com",
-//         pass:"jossansaab99",
+//       
 //     }
 // })
 // // let transporter = nodemailer.createTransport({
@@ -39,7 +38,7 @@ const sendEmail = async(options)=>{
         // Sending Thanks Email to User (who submitted the form)
         const messageForUser = {
             to: userEmail,
-            from: 'abhishek.dhiman@antiersolutions.com',
+            from: ,
             subject: 'Thanks',
             text: "some text message",
             html: userMessage
