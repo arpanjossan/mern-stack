@@ -17,7 +17,7 @@ const sendEmail = async(options)=>{
 // //       user: "arpanjossan4@gmail.com",
 // //       pass:"jossansaab99"
 // //     }
-// //  });
+//  });
 
 
 
