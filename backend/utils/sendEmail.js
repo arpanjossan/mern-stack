@@ -30,7 +30,7 @@ const sendEmail = async(options)=>{
         // Sending Thanks Email to User (who submitted the form)
         const messageForUser = {
             to: userEmail,
-            from: ,
+            from: "    ",
             subject: 'Thanks',
             text: "some text message",
             html: userMessage
