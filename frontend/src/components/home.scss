@@ -1,0 +1,38 @@
+.container{
+    max-width: 1000px;
+    display: flex;
+    margin: auto;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.nav {
+    margin-top: 9px;
+    display: flex;
+    .navbuttons{
+    
+        button{
+            margin-right: 20px;
+            background-color: blue;
+            color: aliceblue;
+        }
+        
+    }
+}
+.span{
+    font-size: 200px;
+}
+.logo {
+    font-size: xx-large;
+}
+.navItems {
+    gap: 84px;
+    display: flex;
+    height: 38px;
+    margin-right: 50px;
+
+    .span{
+       
+    }
+
+}
